@@ -6,11 +6,13 @@ export const Authentification = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
-    const [isLogginIn, setIsLogginIn] = useState(false)
-    const [loginError, setLogginError] = useState('')
+    // Quand on est en train de se connecter, on mettra isLoginIn à true, quand le traitement est fini (quand on aura eu + traîter la rép du back)
+    // on le repassera à false
+    const [isLoginIn, setIsLoginIn] = useState(false)
+    const [loginError, setLoginError] = useState('')
 
     const handleLogin = async () => {
-        setIsLogginIn(true);
+        setIsLoginIn(true);
         try{
             // Ici, ajoutez le véritable appel d'API pour s'authentifier
             // (en attendant, on va juste simuler avec un setTimeout)
@@ -30,28 +32,30 @@ export const Authentification = () => {
             throw new Error ("Erreur d'authentification")
         }
         catch (error){
-            setLogginError("Nom d'utilisateur ou mot de passe incorrect")
+            setLoginError("Nom d'utilisateur ou mot de passe incorrect")
         } 
         finally {
-            setIsLogginIn(false)
+            setIsLoginIn(false)
         }
     }
 
     useEffect( () => {
         // Logique à exécuter après la tentative de connexion
-        if(!isLogginIn && !loginError){
+        if(!isLoginIn && !loginError){
             console.log('Authentification réussi')
 
             // Ce que fait quand on a réussi à se connecter
 
         }
-    }, [isLogginIn, loginError])
+    }, [isLoginIn, loginError])
 
     return (
     <>
       <div className="flex items-center justify-center min-h-screen">
         <div className="p-8 bg-white rounded shadow-md w-96">
           <h2 className="mb-6 text-2xl font-bold">Connexion</h2>
+            { loginError && <p className="mb-4 text-red-500">{loginError}</p> }
+
           <div className="mb-4" >
             <label htmlFor="username" className="block font-semibold text-gray-700">Nom d'utilisateur</label>
             
@@ -74,10 +78,13 @@ export const Authentification = () => {
             />
           </div>
           <button 
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+            className={`bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 ${isLoginIn && 'opacity-50 cursor-not-allowed'}`}
+            
+            
             onClick={handleLogin}
-            disabled={isLogginIn}
-            >  
+            disabled={isLoginIn}
+            >
+                Se connecter  
           </button>
         </div>
       </div>

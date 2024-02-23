@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Navbar } from "./component/Navbar";
+import { Authentification } from "./view/Authentification";
 
 function App () {
   
@@ -25,14 +26,12 @@ function App () {
         },
         {
           path: 'login',
-          element: <>login</>
+          element: <Authentification/>
         },
         {
           path: 'register',
           element: <>s'inscrire</>
         },
-        
-
       ]
     }
   ])
