@@ -1,9 +1,9 @@
+/* eslint-disable react/no-unescaped-entities */
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Navbar } from "./component/Navbar";
 
 function App () {
   
-
   // Notre const 'router' contiendra toutes les routes du projets
   const router = createBrowserRouter([
     {
@@ -26,7 +26,13 @@ function App () {
         {
           path: 'login',
           element: <>login</>
-        }
+        },
+        {
+          path: 'register',
+          element: <>s'inscrire</>
+        },
+        
+
       ]
     }
   ])

@@ -2,6 +2,7 @@
 import { Link } from "react-router-dom";
 import logo from "../assets/img/logo.png";
 import { ShoppingBag } from "react-feather";
+import { HeaderItem } from "./HeaderItem";
 
 export const Navbar = () => {
   return (
@@ -19,10 +20,10 @@ export const Navbar = () => {
           
           <nav>
             <ul className="flex items-center gap-10">
-                <li>Boutique</li>
-                <li>Contact</li>
-                <li>Login</li>
-                <li>S'inscrire</li>
+               <HeaderItem href={'/products'} title="Mes produits"/>
+               <HeaderItem href={'/contact'} title="Contact"/>
+               <HeaderItem href={'/login'} title="Se connecter"/>
+               <HeaderItem href={'/register'} title="S'inscrire"/>
                 <li>
                     <button className="p-2 rounded-full hover:bg-neutral hover:text-secondary hover:scale-105">
                         {/* Attention ! <ShoppingBag /> n'est pas un de mes composants, il est importé de la biblio. 'react-feather' */}
